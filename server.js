@@ -7,6 +7,7 @@ require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
 const PORT = process.env.PORT || 3000;
 const errorMiddleware = require('./middleware/errorMiddleware');
+const { swaggerUi, swaggerDocs } = require('./swagger');
 
 const FRONTEND = process.env.FRONTEND;
 var cors = require('cors');
@@ -19,6 +20,9 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use('/api/products', productRoute);
+// Swagger route
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 
 app.get('/', (req, res) => {
     // throw new Error('fake error');
@@ -39,7 +43,7 @@ mongoose
         app.listen(PORT, () => {
             console.log(`server started on port on ${PORT}`);
           })
-        console.log('Connected to MongoDBbbbbb');
+        console.log('Connected to MongoDB 25.0119');
     }).catch(err => {
         console.log('Error: ', err);
     })
