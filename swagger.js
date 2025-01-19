@@ -12,6 +12,9 @@ const swaggerOptions = {
             {
                 url: 'http://localhost:3000',
             },
+            {
+                url: 'https://nine01-devtamin.onrender.com',
+            },
         ],
         components: {
             schemas: {
